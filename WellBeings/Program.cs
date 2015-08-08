@@ -11,7 +11,11 @@ namespace WellBeings
         static void Main(string[] args)
         {
             NiceBeing newBeing = new NiceBeing();
-            newBeing.RunAsync();
+            Console.WriteLine("Nice to meet you " + newBeing.OwnerName + "!" + "\nHow are you feeling today? Winning? Losing? Inbetweening?");
+            var feeling = Console.ReadLine(); 
+            var gaugeFeeling = newBeing.AnalyseInput(feeling);
+            gaugeFeeling.Wait();
+            Console.WriteLine(gaugeFeeling.Result);
             Console.ReadLine();
         }
     }

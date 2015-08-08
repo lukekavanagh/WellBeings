@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace WellBeings
 {
@@ -22,11 +23,10 @@ namespace WellBeings
             Console.WriteLine("Cool man! My name is " + this.Name);
             Console.WriteLine("So what's your name champ?");
             this.OwnerName = Console.ReadLine();
-            Console.WriteLine("Nice to meet you " + this.OwnerName + "!" +
-                              "\nHow are you feeling today? Winning? Losing? Inbetweening?");
+            
         }
 
-        public async Task RunAsync()
+        public async Task<string> AnalyseInput(string text)
         {
             using (var client = new HttpClient())
             {
@@ -35,22 +35,22 @@ namespace WellBeings
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 // New code:
-                HttpResponseMessage response = await client.GetAsync("uClassify/sentiment/ClassifyText?readkey=c1bpk3CCyKXE&output=json&version=1.01&text=tired");
+                HttpResponseMessage response = await client.GetAsync("uClassify/sentiment/ClassifyText?readkey=c1bpk3CCyKXE&output=json&version=1.01&text=" + text);
 
                 if (response.IsSuccessStatusCode)
                 {
                     //Product product = await response.Content.ReadAsAsync > Product > ()
-                    var resp = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine(resp);
+                    Analysis analysis = await response.Content.ReadAsAsync<Analysis>();
+                    //var jsonString = await response.Content.ReadAsStringAsync();
+                    //var analysis = JsonConvert.DeserializeObject<Analysis>(jsonString);
+                    if (analysis.cls1.positive > analysis.cls1.negative)
+                    {
+                        return "positive";
+                    }
+                    return "negative";
                 }
             }
+            return "null";
         }
     }
-
-//       public string AnalyseInput(string input)
-//       {
-           
-//       }
-//    }
-
 }
