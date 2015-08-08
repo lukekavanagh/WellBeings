@@ -11,7 +11,7 @@ namespace WellBeings
         static void Main(string[] args)
         {
             NiceBeing newBeing = new NiceBeing();
-            Console.WriteLine(newBeing.Name);
+            newBeing.RunAsync();
             Console.ReadLine();
         }
     }
