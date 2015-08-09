@@ -18,7 +18,7 @@ namespace WellBeings
         public bool success { get; set; }
         public int statusCode { get; set; }
         public string errorMessage { get; set; }
-        public int textCoverage { get; set; }
+        public float textCoverage { get; set; }
         public Emotion cls1 { get; set; }
     }
 }

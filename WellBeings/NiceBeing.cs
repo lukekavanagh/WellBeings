@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -49,8 +50,45 @@ namespace WellBeings
                     }
                     return "negative";
                 }
+                else
+                {
+                    throw new NotImplementedException();
+                }
             }
-            return "null";
         }
+
+
+        public async Task<List<string>> AnalyseParagraph(string paragraph)
+        {
+            List<string> keywords = new List<string>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://access.alchemyapi.com/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response =
+                    await client.GetAsync("calls/text/TextGetRankedKeywords?apikey=16448f817093a00b3ad66467f27687f625af7c88&outputMode=json&text='" + paragraph + "'");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ParagraphAnalysis paragraphAnalysis = await response.Content.ReadAsAsync<ParagraphAnalysis>();
+                    for (int i = 0; i < paragraphAnalysis.keywords.Count; i++)
+                    {
+                        //Console.WriteLine(paragraphAnalysis.keywords[i].text);
+                        keywords.Add(paragraphAnalysis.keywords[i].text);
+                    }
+                    return keywords;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        } 
+
+
+
+
     }
 }

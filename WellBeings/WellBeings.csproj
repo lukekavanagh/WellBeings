@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Analysis.cs" />
     <Compile Include="NiceBeing.cs" />
+    <Compile Include="ParagraphAnalysis.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
