@@ -15,9 +15,11 @@ namespace WellBeings
     {
         public string Name { get; set; }
         public string OwnerName { get; set; }
+        public Cards NewCardDeck { get; set; }
 
         public NiceBeing()
         {
+            this.NewCardDeck = new Cards();
             Console.WriteLine(
                 "Hey there, I'm a WellBeing, I'm here to help you. Please give me a name so that we can become more acquainted with one another.");
             this.Name = Console.ReadLine();
@@ -85,9 +87,14 @@ namespace WellBeings
                     throw new NotImplementedException();
                 }
             }
-        } 
+        }
 
-
+        public Card GetCard()
+        {
+            Random random = new Random();
+            var randomCard = this.NewCardDeck.CardDeck[random.Next(0,5)];
+            return randomCard;
+        }
 
 
     }

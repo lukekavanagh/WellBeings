@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WellBeings
@@ -17,9 +18,17 @@ namespace WellBeings
             //gaugeFeeling.Wait();
             //Console.WriteLine(gaugeFeeling.Result);
             var paragraphTest = Console.ReadLine(); 
-            var keywords = newBeing.AnalyseParagraph(paragraphTest);
-            keywords.Wait();
-            Console.WriteLine(keywords.Result);
+            var keywordList = newBeing.AnalyseParagraph(paragraphTest);
+            keywordList.Wait();
+            string words = "";
+            for (int i = 0; i < keywordList.Result.Count; i++)
+            {
+                words = words + keywordList.Result[i] + ", ";
+            }
+            var keywordString = words.Trim(',', ' ');
+            Console.WriteLine("Thanks for telling me about " + keywordString + ".\nHere is a card to increase the meaning of your existence." );
+            Thread.Sleep(3000);
+            Console.WriteLine(newBeing.GetCard().CardText);
             Console.ReadLine();
         }
     }
