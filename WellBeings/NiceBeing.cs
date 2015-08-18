@@ -15,16 +15,16 @@ namespace WellBeings
     {
         public string Name { get; set; }
         public string OwnerName { get; set; }
-        public Cards NewCardDeck { get; set; }
+        public NiceCards NewCardDeck { get; set; }
 
         public NiceBeing()
         {
-            this.NewCardDeck = new Cards();
+            this.NewCardDeck = new NiceCards();
             Console.WriteLine(
-                "Hey there, I'm a WellBeing, I'm here to help you. Please give me a name so that we can become more acquainted with one another.");
+                "Hey there, I'm a WellBeing, I'm here to help you.\n\nPlease give me a name so that we can become more acquainted with one another.");
             this.Name = Console.ReadLine();
-            Console.WriteLine("Cool man! My name is " + this.Name);
-            Console.WriteLine("So what's your name champ?");
+            Console.WriteLine("\nCool man! My name is " + this.Name);
+            Console.WriteLine("\nSo what's your name champ?\n");
             this.OwnerName = Console.ReadLine();
             
         }

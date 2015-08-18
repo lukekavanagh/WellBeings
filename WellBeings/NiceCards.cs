@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WellBeings
 {
-    public class Cards
+    public class NiceCards
     {
         public List<Card> CardDeck { get; set; }
        
-        public Cards()
+        public NiceCards()
         {
             this.CardDeck=  new List<Card>();
             CardDeck.Add(new Card(){CardText = "Express your honest feelings to your best friend" });
