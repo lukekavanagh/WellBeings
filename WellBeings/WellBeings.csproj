@@ -50,12 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analysis.cs" />
-    <Compile Include="Cards.cs" />
+    <Compile Include="NiceCards.cs" />
     <Compile Include="NiceBeing.cs" />
     <Compile Include="ParagraphAnalysis.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToughLoveBeing.cs" />
+    <Compile Include="ToughLoveCards.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
